@@ -1,0 +1,175 @@
+{
+  "info": {
+    "name": "After School API",
+    "description": "Requests for the CST3144 Express.js API. Run 'GET /lessons' first: it saves a lessonId used by the other requests. Change baseUrl to your render.com address when testing the hosted server.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000" },
+    { "key": "lessonId", "value": "" },
+    { "key": "teacherId", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "1. GET /lessons",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const lessons = pm.response.json();",
+              "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+              "pm.test('Returns an array of lessons', () => pm.expect(lessons).to.be.an('array').that.is.not.empty);",
+              "pm.test('Lesson has topic, location, price, space', () => {",
+              "  pm.expect(lessons[0]).to.include.all.keys('topic', 'location', 'price', 'space');",
+              "});",
+              "pm.collectionVariables.set('lessonId', lessons[0]._id);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{baseUrl}}/lessons", "host": ["{{baseUrl}}"], "path": ["lessons"] }
+      }
+    },
+    {
+      "name": "2. POST /orders (save a new order)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status is 201', () => pm.response.to.have.status(201));",
+              "pm.test('Returns an orderId', () => pm.expect(pm.response.json()).to.have.property('orderId'));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Postman Tester\",\n  \"phone\": \"0123456789\",\n  \"items\": [\n    { \"lessonId\": \"{{lessonId}}\", \"spaces\": 2 }\n  ]\n}"
+        },
+        "url": { "raw": "{{baseUrl}}/orders", "host": ["{{baseUrl}}"], "path": ["orders"] }
+      }
+    },
+    {
+      "name": "3. PUT /lessons/:id (update spaces)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+              "pm.test('Lesson updated', () => pm.expect(pm.response.json().message).to.eql('Lesson updated'));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"space\": 3\n}" },
+        "url": {
+          "raw": "{{baseUrl}}/lessons/{{lessonId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["lessons", "{{lessonId}}"]
+        },
+        "description": "Any lesson attribute can be sent, e.g. {\"price\": 90, \"location\": \"Hendon\"}. space can be set to any whole number."
+      }
+    },
+    {
+      "name": "4. GET /search?q=",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/search?q=hen",
+          "host": ["{{baseUrl}}"],
+          "path": ["search"],
+          "query": [{ "key": "q", "value": "hen" }]
+        }
+      }
+    },
+    {
+      "name": "5. GET /enrolment/:lessonid",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/enrolment/{{lessonId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["enrolment", "{{lessonId}}"]
+        }
+      }
+    },
+    {
+      "name": "6. GET /teachers",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+              "pm.collectionVariables.set('teacherId', pm.response.json()[0]._id);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{baseUrl}}/teachers", "host": ["{{baseUrl}}"], "path": ["teachers"] }
+      }
+    },
+    {
+      "name": "7. GET /teachers/:id/lessons",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/teachers/{{teacherId}}/lessons",
+          "host": ["{{baseUrl}}"],
+          "path": ["teachers", "{{teacherId}}", "lessons"]
+        }
+      }
+    },
+    {
+      "name": "8. GET /images/math.svg (exists)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{baseUrl}}/images/math.svg", "host": ["{{baseUrl}}"], "path": ["images", "math.svg"] }
+      }
+    },
+    {
+      "name": "9. GET /images/missing.png (error message)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": ["pm.test('Status is 404', () => pm.response.to.have.status(404));"]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/images/missing.png",
+          "host": ["{{baseUrl}}"],
+          "path": ["images", "missing.png"]
+        }
+      }
+    }
+  ]
+}
