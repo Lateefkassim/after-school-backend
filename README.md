@@ -1,34 +1,30 @@
-# After School Classes - Express.js API (CST3144)
+# After School Classes - Backend
 
-REST API for the after school classes app. Built with Node.js, Express.js and the native MongoDB driver (no Mongoose). Data is stored in MongoDB Atlas.
+This is the Express.js server for my after school classes app (CST3144). It uses Node.js, Express and the MongoDB driver, and the data is kept in MongoDB Atlas.
 
-## Run locally
+## How to run it
 
-```sh
-npm install
-cp .env.example .env   # then fill in MONGODB_URI
-npm run seed           # one time: creates 10 lessons and 5 teachers
-npm run dev            # http://localhost:3000
-```
+1. Run `npm install`
+2. Make a `.env` file (copy `.env.example`) and put my MongoDB link in `MONGODB_URI`
+3. Run `npm run seed` once to add the lessons and teachers
+4. Run `npm run dev` and open http://localhost:3000/lessons
 
 ## Routes
 
-| Route | Purpose |
-|---|---|
-| `GET /lessons` | all lessons |
-| `GET /search?q=` | search topic, location, price and space |
-| `POST /orders` | save a new order |
-| `PUT /lessons/:id` | update any lesson field, e.g. `{ "space": 3 }` |
-| `GET /enrolment/:lessonid` | spaces already purchased for a lesson |
-| `GET /teachers` | all teachers |
-| `GET /teachers/:id/lessons` | lessons taught by one teacher |
-| `GET /images/<file>` | lesson image, or a JSON error if it does not exist |
+- `GET /lessons` - all the lessons
+- `GET /search?q=hen` - search by subject, location, price or spaces
+- `POST /orders` - save a new order
+- `PUT /lessons/:id` - change a lesson, for example `{ "space": 3 }`
+- `GET /enrolment/:lessonid` - how many spaces have been bought for a lesson
+- `GET /teachers` - all the teachers
+- `GET /teachers/:id/lessons` - the lessons of one teacher
+- `GET /images/math.svg` - a lesson image (shows an error if the image is not there)
 
-Postman requests are in `postman/after-school-api.postman_collection.json`.
+My Postman requests are in the `postman` folder.
 
 ## Links
 
-- [Vue.js App] GitHub repository: _to add_
-- [Vue.js App] GitHub Pages: _to add_
-- [Express.js App] GitHub repository: _to add_
-- [Express.js App] render.com /lessons route: _to add_
+- Vue.js app repository: https://github.com/Lateefkassim/after-school-frontend
+- Vue.js app on GitHub Pages: not added yet
+- Express.js app repository: https://github.com/Lateefkassim/after-school-backend
+- Lessons route on Render: https://m01142449-after-school.onrender.com/lessons
