@@ -25,6 +25,6 @@ My Postman requests are in the `postman` folder.
 ## Links
 
 - Vue.js app repository: https://github.com/Lateefkassim/after-school-frontend
-- Vue.js app on GitHub Pages: not added yet
+- Vue.js app on GitHub Pages: https://lateefkassim.github.io/after-school-frontend/
 - Express.js app repository: https://github.com/Lateefkassim/after-school-backend
 - Lessons route on Render: https://m01142449-after-school.onrender.com/lessons
