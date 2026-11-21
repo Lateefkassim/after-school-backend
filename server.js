@@ -85,6 +85,9 @@ app.post('/orders', async (req, res) => {
       if (!ObjectId.isValid(item.lessonId)) {
         return res.status(400).json({ error: 'Invalid lesson id' })
       }
+      if (!Number.isInteger(item.spaces) || item.spaces < 1) {
+        return res.status(400).json({ error: 'Spaces must be a number above 0' })
+      }
       orderItems.push({ lessonId: new ObjectId(item.lessonId), spaces: item.spaces })
     }
 
