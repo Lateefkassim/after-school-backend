@@ -12,16 +12,16 @@ const teacherList = [
 
 // teacher is the position of the teacher in teacherList
 const lessonList = [
-  { topic: 'Math', location: 'Hendon', price: 100, space: 5, icon: 'fa-solid fa-calculator', image: 'math.svg', teacher: 0 },
-  { topic: 'English', location: 'Colindale', price: 80, space: 5, icon: 'fa-solid fa-book-open', image: 'english.svg', teacher: 0 },
-  { topic: 'Science', location: 'Brent Cross', price: 90, space: 5, icon: 'fa-solid fa-flask', image: 'science.svg', teacher: 1 },
+  { topic: 'Math', location: 'Hendon', price: 50, space: 5, icon: 'fa-solid fa-calculator', image: 'math.svg', teacher: 0 },
+  { topic: 'English', location: 'Colindale', price: 30, space: 5, icon: 'fa-solid fa-book-open', image: 'english.svg', teacher: 0 },
+  { topic: 'Science', location: 'Brent Cross', price: 45, space: 5, icon: 'fa-solid fa-flask', image: 'science.svg', teacher: 1 },
   { topic: 'Football', location: 'Golders Green', price: 60, space: 5, icon: 'fa-solid fa-futbol', image: 'football.svg', teacher: 1 },
-  { topic: 'Music', location: 'Hendon', price: 95, space: 5, icon: 'fa-solid fa-music', image: 'music.svg', teacher: 2 },
-  { topic: 'Art', location: 'Colindale', price: 70, space: 5, icon: 'fa-solid fa-palette', image: 'art.svg', teacher: 2 },
-  { topic: 'Coding', location: 'Brent Cross', price: 110, space: 5, icon: 'fa-solid fa-laptop-code', image: 'coding.svg', teacher: 3 },
-  { topic: 'Chess', location: 'Golders Green', price: 50, space: 5, icon: 'fa-solid fa-chess', image: 'chess.svg', teacher: 3 },
-  { topic: 'Drama', location: 'Hendon', price: 85, space: 5, icon: 'fa-solid fa-masks-theater', image: 'drama.svg', teacher: 4 },
-  { topic: 'Swimming', location: 'Colindale', price: 120, space: 5, icon: 'fa-solid fa-person-swimming', image: 'swimming.svg', teacher: 4 },
+  { topic: 'Music', location: 'Hendon', price: 40, space: 5, icon: 'fa-solid fa-music', image: 'music.svg', teacher: 2 },
+  { topic: 'Art', location: 'Colindale', price: 65, space: 5, icon: 'fa-solid fa-palette', image: 'art.svg', teacher: 2 },
+  { topic: 'Coding', location: 'Brent Cross', price: 80, space: 5, icon: 'fa-solid fa-laptop-code', image: 'coding.svg', teacher: 3 },
+  { topic: 'Chess', location: 'Golders Green', price: 20, space: 5, icon: 'fa-solid fa-chess', image: 'chess.svg', teacher: 3 },
+  { topic: 'Drama', location: 'Hendon', price: 12, space: 5, icon: 'fa-solid fa-masks-theater', image: 'drama.svg', teacher: 4 },
+  { topic: 'Swimming', location: 'Colindale', price: 35, space: 5, icon: 'fa-solid fa-person-swimming', image: 'swimming.svg', teacher: 4 },
 ]
 
 async function seed() {
