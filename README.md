@@ -22,6 +22,14 @@ This is the Express.js server for my after school classes app (CST3144). It uses
 
 My Postman requests are in the `postman` folder.
 
+## Logger
+
+Every request is printed in the console with the time, the method and the url, for example:
+
+`2026-11-21T13:00:00.000Z GET /lessons`
+
+On Render you can see these lines in the Logs tab.
+
 ## Links
 
 - Vue.js app repository: https://github.com/Lateefkassim/after-school-frontend
