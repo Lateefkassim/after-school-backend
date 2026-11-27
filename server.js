@@ -105,10 +105,9 @@ app.put('/lessons/:id', async (req, res) => {
       return res.status(400).json({ error: 'Invalid lesson id' })
     }
 
-    const allowed = ['topic', 'location', 'price', 'space', 'icon', 'image']
     const changes = {}
     for (const key in req.body) {
-      if (allowed.includes(key)) {
+      if (key !== '_id') {
         changes[key] = req.body[key]
       }
     }
